@@ -53,31 +53,37 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> getAUserByName(String name) {
-        return Optional.empty();
+        return userRepository.findByName(name);
     }
 
     @Override
     public Optional<User> getAUserByEmail(String email) {
-        return Optional.empty();
+        return userRepository.findByEmail(email);
     }
 
     @Override
     public Optional<User> getAUserById(String id) {
-        return Optional.empty();
+
+        return userRepository.findById(id);
     }
 
     @Override
     public void deleteUser(String id) {
-
+        User user = userRepository.findById(id).orElseThrow(() -> new
+                UserException("User does not exist"));
+        userRepository.delete(user);
     }
 
     @Override
-    public User updateUser(User user, String userId) {
-        return null;
+    public User updateUser(UserDto userDto, String userId) {
+        User userToUpdate = userRepository.findById(userId).orElseThrow(() ->
+                new UserException("User does not exist"));
+        modelMapper.map(userDto, userToUpdate);
+        return userRepository.save(userToUpdate);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        return userRepository.findAll();
     }
 }

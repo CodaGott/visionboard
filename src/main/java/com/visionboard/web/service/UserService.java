@@ -13,6 +13,6 @@ public interface UserService {
     Optional<User> getAUserByEmail(String email);
     Optional<User> getAUserById(String id);
     void deleteUser(String id);
-    User updateUser(User user, String userId);
+    User updateUser(UserDto userDto, String userId);
     List<User> getAllUsers();
 }
