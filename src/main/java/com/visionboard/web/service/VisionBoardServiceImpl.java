@@ -25,6 +25,10 @@ public class VisionBoardServiceImpl implements VisionBoardService{
     @Autowired
     private ModelMapper modelMapper;
 
+    public VisionBoardServiceImpl(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
+
     @Override
     public Optional<Vision> getVisionById(String id) throws VisionBoardException {
         return visionRepository.findById(id);

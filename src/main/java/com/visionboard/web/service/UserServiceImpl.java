@@ -5,6 +5,7 @@ import com.visionboard.data.model.Role;
 import com.visionboard.data.model.User;
 import com.visionboard.data.repository.UserRepository;
 import com.visionboard.exception.UserException;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@NoArgsConstructor
 public class UserServiceImpl implements UserService{
 
     @Autowired
@@ -20,6 +22,10 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private ModelMapper modelMapper;
+
+    public UserServiceImpl(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public User createAdmin(UserDto userDto) {
